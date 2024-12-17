@@ -1,6 +1,8 @@
 import os
 import time
 from tabulate import tabulate
+import subprocess
+import subprocess
 
 
 def format_size(size_in_bytes):
@@ -20,9 +22,8 @@ def sizeofFolder(path):
         else:
             folderSize += sizeofFolder(itemPath)
     return folderSize
-
-
-current_dir = os.getcwd()
+path="/home/faiz/Programmoing"
+current_dir = f"{path}"
 dirs = os.listdir(current_dir)
 
 
