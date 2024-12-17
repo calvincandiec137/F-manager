@@ -1,9 +1,6 @@
 import os
 import time
 from tabulate import tabulate
-import subprocess
-import subprocess
-
 
 def format_size(size_in_bytes):
     for unit in ['B', 'KB', 'MB', 'GB', 'TB']:
@@ -22,28 +19,35 @@ def sizeofFolder(path):
         else:
             folderSize += sizeofFolder(itemPath)
     return folderSize
-path="/home/faiz/Programmoing"
-current_dir = f"{path}"
-dirs = os.listdir(current_dir)
 
-
-data = []
-
-for i in dirs:
-    path = os.path.join(current_dir, i)
+def fill_data_for_tabulate(current_dir):
+    dirs = os.listdir(current_dir)
     
-    if os.path.isfile(path):
-        fileName = os.path.basename(path)
-        fileSize = os.path.getsize(path)
-        sizeName = format_size(fileSize)
-        fileDate = time.ctime(os.path.getmtime(path))
-        data.append([fileName, sizeName, fileDate])
-    else:  
-        fileName = f"/{os.path.basename(path)}"
-        folderSize = sizeofFolder(path)
-        sizeName = format_size(folderSize)
-        fileDate = time.ctime(os.path.getmtime(path))
-        data.append([fileName, sizeName, fileDate])
+    data = []
 
+    for i in dirs:
+        path = os.path.join(current_dir, i)
+    
+        if os.path.isfile(path):
+            fileName = os.path.basename(path)
+            fileSize = os.path.getsize(path)
+            sizeName = format_size(fileSize)
+            fileDate = time.ctime(os.path.getmtime(path))
+            data.append([fileName, sizeName, fileDate])
+        else:  
+            fileName = f"/{os.path.basename(path)}"
+            folderSize = sizeofFolder(path)
+            sizeName = format_size(folderSize)
+            fileDate = time.ctime(os.path.getmtime(path))
+            data.append([fileName, sizeName, fileDate])
+    return data
 
-print(tabulate(data, headers=["File Name", "Size", "Date of Creation"], tablefmt="grid"))
+def main():
+    path = "/home/faiz/Programming"  # Corrected the path
+    current_dir = f"{path}"
+
+    data = fill_data_for_tabulate(current_dir)
+    print(tabulate(data, headers=["File Name", "Size", "Date of Creation"], tablefmt="grid"))
+
+if __name__ == "__main__":
+    main()
