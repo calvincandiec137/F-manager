@@ -61,7 +61,7 @@ def main(stdscr):
     data = fill_data_for_tabulate(current_dir)
     rows=tabulate(data, headers=["File Name", "Size", "Date of Creation"], tablefmt="grid").splitlines()
     
-    cursor_row = 1
+    cursor_row = 3
     
     while True:
         stdscr.clear()
@@ -79,7 +79,7 @@ def main(stdscr):
         stdscr.refresh()
         key = stdscr.getch()
         
-        if key == curses.KEY_UP and cursor_row > 2:
+        if key == curses.KEY_UP and cursor_row > 3:
             cursor_row -= 2
         elif key == curses.KEY_DOWN and cursor_row < len(rows) - 2:
             cursor_row += 2
