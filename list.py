@@ -43,19 +43,13 @@ def fill_data_for_tabulate(current_dir):
             data.append([fileName, sizeName, fileDate])
     return data
 
-# def main():
-#     path = "/home/faiz/Programming"  # Corrected the path
-#     current_dir = f"{path}"
-
-#     data = fill_data_for_tabulate(current_dir)
-#     print(tabulate(data, headers=["File Name", "Size", "Date of Creation"], tablefmt="grid"))
 
 def main(stdscr):
     curses.cbreak()
     stdscr.keypad(True)
     curses.curs_set(0)
     
-    path = "/home/faiz/Programming"  # Corrected the path
+    path = "/home/faiz/Programming" 
     current_dir = f"{path}"
 
     data = fill_data_for_tabulate(current_dir)
@@ -66,8 +60,9 @@ def main(stdscr):
     while True:
         stdscr.clear()
         
-        path = f"{os.getcwd()}/"  # Corrected the path
         current_dir = f"{path}"
+        data = fill_data_for_tabulate(current_dir)
+        rows=tabulate(data, headers=["File Name", "Size", "Date of Creation"], tablefmt="grid").splitlines()
 
         for i,row in enumerate(rows):
             if i==cursor_row:
@@ -83,8 +78,23 @@ def main(stdscr):
             cursor_row -= 2
         elif key == curses.KEY_DOWN and cursor_row < len(rows) - 2:
             cursor_row += 2
-        elif key == ord('q'):  # Quit on 'q'
+        elif key == ord('q'):
             break
+        elif key == 10:  
+            data_index = (cursor_row - 3) // 2  
+            if 0 <= data_index < len(data):  
+                selected_entry = data[data_index][0]
+
+                if selected_entry.startswith("/"):
+                    path = os.path.join(current_dir, selected_entry.lstrip('/'))
+
+                    data = fill_data_for_tabulate(path)
+                    rows = tabulate(data, headers=["File Name", "Size", "Date of Creation"], tablefmt="grid").splitlines()
+
+                    cursor_row = 3
+                else:
+                    os.system(f"xdg-open '{path}'")
+
         
         stdscr.addstr(0, 0, f"Key pressed: {key}  ")
 
