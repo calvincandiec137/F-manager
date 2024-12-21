@@ -80,6 +80,8 @@ def main(stdscr):
             cursor_row += 2
         elif key == ord('q'):
             break
+        elif key==curses.KEY_LEFT:
+            path=os.path.dirname(current_dir)
         elif key == 10:  
             data_index = (cursor_row - 3) // 2  
             if 0 <= data_index < len(data):  
