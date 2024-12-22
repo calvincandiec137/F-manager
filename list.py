@@ -15,6 +15,8 @@ def sizeofFolder(path):
     listItems = os.listdir(path)
     for j in listItems:
         itemPath = os.path.join(path, j)
+        if os.path.islink(itemPath):
+            continue
         if os.path.isfile(itemPath):
             folderSize += os.path.getsize(itemPath)
         else:
@@ -27,6 +29,8 @@ def fill_data_for_tabulate(current_dir):
     data = []
 
     for i in dirs:
+        if i.startswith('.'):
+            continue
         path = os.path.join(current_dir, i)
     
         if os.path.isfile(path):
@@ -49,7 +53,7 @@ def main(stdscr):
     stdscr.keypad(True)
     curses.curs_set(0)
     
-    path = "/home/faiz/Programming" 
+    path = f"{os.getcwd()}"
     current_dir = f"{path}"
 
     data = fill_data_for_tabulate(current_dir)
