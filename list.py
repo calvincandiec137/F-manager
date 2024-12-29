@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import os
 import time
 from tabulate import tabulate
@@ -27,7 +29,7 @@ def fill_data_for_tabulate(current_dir):
     dirs = os.listdir(current_dir)
     
     data = []
-
+#hello;
     for i in dirs:
         if i.startswith('.'):
             continue
