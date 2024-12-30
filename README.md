@@ -31,6 +31,7 @@ After the d-packaging run the script using:
 ```bash
 list.py
 ```
+---
 
 ## 🎮 Navigation Controls
 
