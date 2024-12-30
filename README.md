@@ -32,8 +32,6 @@ Once you've downloaded the `.deb` package, you can install it using `dpkg`:
 sudo dpkg -i list-manager.deb
 
 ```
-![Screenshot of List Manager](asset/Screenshot from 2024-12-30 20-37-21.png)
-
 Then run the script using :
 ```bash
 list
