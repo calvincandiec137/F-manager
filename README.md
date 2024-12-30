@@ -29,7 +29,7 @@ You can download the `.deb` package from the releases section of this repository
 Once you've downloaded the `.deb` package, you can install it using `dpkg`:
 
 ```bash
-sudo dpkg -i list-manager-1.0.deb
+sudo dpkg -i list-manager.deb
 
 ```
 Then run the script using :
