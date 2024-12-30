@@ -27,7 +27,10 @@ Once downloaded, install it using the following command:
 ```bash
 sudo dpkg -i list-manager.deb
 ```
-
+After the d-packaging run the script using:
+```bash
+list.py
+```
 
 ## 🎮 Navigation Controls
 
