@@ -27,6 +27,9 @@ Once downloaded, install it using the following command:
 ```bash
 sudo dpkg -i list-manager.deb
 ```
+
+!(ss)[https://github.com/calvincandiec137/F-manager/blob/main/assests/list.png]
+
 ## 🎮 Navigation Controls
 
 | Key            | Action                                    |
